@@ -1,6 +1,6 @@
 import React from 'react';
 import BlogPostList from "./BlogPostList";
-import {blogPostAdd, blogPostList} from "../actions/actions";
+import {blogPostAdd, blogPostListFetch, blogPostListError } from "../actions/actions";
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -8,35 +8,28 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    blogPostList,
-    blogPostAdd
+    blogPostAdd,
+    blogPostListFetch,
+    blogPostListError
 };
 
 class BlogPostListContainer extends React.Component {
 
     componentDidMount() {
-
-        let index = 0;
-
-        const timer = setInterval(() => {
-            this.props.blogPostAdd();
-            index += 1;
-
-            if(index > 5) {
-                clearInterval(timer);
-            }
-        }, 2000);
-
-        this.props.blogPostList();
-
+        this.props.blogPostListFetch();
     }
 
     render() {
-        const { posts } = this.props;
+        const { posts, isFetching } = this.props;
+
+        console.log('props: ', this.props);
 
         return (<div>
            <div>
                BlogPostListContainer
+           </div>
+           <div>
+              <p>{ isFetching ? 'Fetching data..' : '' }</p>
            </div>
            <BlogPostList posts={posts} />
         </div>);
