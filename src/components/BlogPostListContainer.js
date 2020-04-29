@@ -15,14 +15,24 @@ const mapDispatchToProps = {
 class BlogPostListContainer extends React.Component {
 
     componentDidMount() {
-        console.log('mount', this.props);
+
+        let index = 0;
+
+        const timer = setInterval(() => {
+            this.props.blogPostAdd();
+            index += 1;
+
+            if(index > 5) {
+                clearInterval(timer);
+            }
+        }, 2000);
+
         this.props.blogPostList();
+
     }
 
     render() {
         const { posts } = this.props;
-
-        console.log('posts: ', posts);
 
         return (<div>
            <div>
