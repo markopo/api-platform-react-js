@@ -1,4 +1,5 @@
 import React from 'react';
+import BlogPost from "./BlogPost";
 
 
 class BlogPostList extends React.Component {
@@ -12,10 +13,8 @@ class BlogPostList extends React.Component {
         const { posts } = this.props;
 
         return (<div>
-            <ul>
-                {posts && posts.map(post => (<li key={post.id} >{post.title}</li>))}
-            </ul>
-        </div>);
+                {posts && posts.map(post => (<BlogPost post={post} />))}
+                </div>);
     }
 }
 
