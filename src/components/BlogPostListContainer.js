@@ -3,6 +3,7 @@ import BlogPostList from "./BlogPostList";
 import {blogPostAdd, blogPostListFetch, blogPostListError } from "../actions/actions";
 import { connect } from 'react-redux';
 import Header from "./Header";
+import Alert from "./Alert";
 
 const mapStateToProps = state => ({
     ...state.blogPostList
@@ -23,14 +24,8 @@ class BlogPostListContainer extends React.Component {
     render() {
         const { posts, isFetching } = this.props;
 
-        console.log('props: ', this.props);
-
-        const cssDisplayFetching = isFetching ? 'block' : 'none';
-
         return (<div>
-                   <div style={{ 'display': cssDisplayFetching }} className="alert alert-primary" >
-                      <span>{ isFetching ? 'Fetching data..' : '' }</span>
-                   </div>
+                   <Alert isFetching={isFetching} />
                    <BlogPostList posts={posts} />
                 </div>);
     }
