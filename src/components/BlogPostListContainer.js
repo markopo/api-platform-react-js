@@ -25,7 +25,7 @@ class BlogPostListContainer extends React.Component {
         const { posts, isFetching } = this.props;
 
         return (<div>
-                   <Alert isFetching={isFetching} />
+                   <Alert show={isFetching} text='Fetching data..' />
                    <BlogPostList posts={posts} />
                 </div>);
     }

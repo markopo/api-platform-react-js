@@ -4,12 +4,12 @@ import React from 'react';
 class Alert extends React.Component {
 
     render() {
-        const {  isFetching  } = this.props;
-        const cssDisplayFetching = isFetching ? 'block' : 'none';
+        const {  show, text  } = this.props;
+        const cssDisplayShow = show ? 'block' : 'none';
 
         return (
-            <div style={{ 'display': cssDisplayFetching }} className="alert alert-primary" >
-                <span>{ isFetching ? 'Fetching data..' : '' }</span>
+            <div style={{ 'display': cssDisplayShow }} className="alert alert-primary" >
+                <span>{ show ? text : '' }</span>
             </div>
         );
     }
