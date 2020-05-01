@@ -2,7 +2,6 @@ import React from 'react';
 import BlogPostList from "./BlogPostList";
 import {blogPostAdd, blogPostListFetch, blogPostListError } from "../actions/actions";
 import { connect } from 'react-redux';
-import Header from "./Header";
 import Alert from "./Alert";
 
 const mapStateToProps = state => ({
