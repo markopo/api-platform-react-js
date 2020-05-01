@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogPost from "./BlogPost";
+import BlogPostCard from "./BlogPostCard";
 
 
 class BlogPostList extends React.Component {
@@ -13,7 +13,7 @@ class BlogPostList extends React.Component {
         const { posts } = this.props;
 
         return (<div>
-                {posts && posts.map(post => (<BlogPost post={post} />))}
+                {posts && posts.map(post => (<BlogPostCard key={post.id} post={post} />))}
                 </div>);
     }
 }

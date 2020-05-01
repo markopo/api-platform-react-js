@@ -4,6 +4,7 @@ import {Route} from "react-router";
 import LoginForm from "./LoginForm";
 import BlogPostListContainer from "./BlogPostListContainer";
 import Header from "./Header";
+import BlogPostContainer from "./BlogPostContainer";
 
 class App extends React.Component {
 
@@ -16,6 +17,7 @@ class App extends React.Component {
             <Header />
             <hr/>
             <Switch>
+                <Route path="/blog-post/:id/:slug" component={BlogPostContainer} />
                 <Route path="/login" component={LoginForm} />
                 <Route path="/" component={BlogPostListContainer} />
             </Switch>
