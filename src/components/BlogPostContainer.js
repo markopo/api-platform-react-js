@@ -1,13 +1,15 @@
 import React from 'react';
-import {blogPostFetch} from "../actions/actions";
+import {blogPostFetch, blogPostUnload} from "../actions/actions";
 import {connect} from "react-redux";
+import BlogPost from "./BlogPost";
 
 const mapStateToProps = state => ({
     ...state.blogPost
 });
 
 const mapDispatchToProps = {
-    blogPostFetch
+    blogPostFetch,
+    blogPostUnload
 }
 
 class BlogPostContainer extends React.Component {
@@ -20,21 +22,20 @@ class BlogPostContainer extends React.Component {
         this.props.blogPostFetch(id);
     }
 
+    componentWillUnmount() {
+        console.log('unmount!');
+        this.props.blogPostUnload();
+    }
+
     render() {
-
         const {
-            post
+            post,
+            isFetching
         } = this.props;
-
-        if(!post) {
-            return (<div>No post</div>);
-        }
 
         console.log('post: ', post);
 
-        return(<div>
-            Hello BlogPostContainer {post.title}
-        </div>);
+        return(<BlogPost post={post} isFetching={isFetching} />);
     }
 }
 

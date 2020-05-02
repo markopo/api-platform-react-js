@@ -1,7 +1,7 @@
 import {
     BLOG_POST_REQUEST,
     BLOG_POST_RECEIVED,
-    BLOG_POST_ERROR
+    BLOG_POST_ERROR, BLOG_POST_UNLOAD
 } from "../actions/constants";
 
 export default (state = {
@@ -27,6 +27,12 @@ export default (state = {
             return {
                 ...state,
                 isFetching: false
+            };
+        case BLOG_POST_UNLOAD:
+            return {
+                ...state,
+                isFetching: false,
+                post: null
             };
         default:
             return state;
