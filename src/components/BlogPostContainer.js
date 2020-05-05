@@ -15,15 +15,12 @@ const mapDispatchToProps = {
 class BlogPostContainer extends React.Component {
 
     componentDidMount() {
-        console.log('bpc: ', this.props, this.props.match.params.id);
-
         const { id } = this.props.match.params;
 
         this.props.blogPostFetch(id);
     }
 
     componentWillUnmount() {
-        console.log('unmount!');
         this.props.blogPostUnload();
     }
 
