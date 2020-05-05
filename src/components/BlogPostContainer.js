@@ -2,6 +2,8 @@ import React from 'react';
 import {blogPostFetch, blogPostUnload} from "../actions/actions";
 import {connect} from "react-redux";
 import BlogPost from "./BlogPost";
+import CommentList from "./CommentList";
+
 
 const mapStateToProps = state => ({
     ...state.blogPost
@@ -32,7 +34,12 @@ class BlogPostContainer extends React.Component {
 
         console.log('post: ', post);
 
-        return(<BlogPost post={post} isFetching={isFetching} />);
+        const comments = post ? post.comments : [];
+
+        return(<div>
+                 <BlogPost post={post} isFetching={isFetching} />
+                 <CommentList commentList={comments} isFetching={isFetching} />
+                </div>);
     }
 }
 

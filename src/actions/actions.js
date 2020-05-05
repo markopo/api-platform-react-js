@@ -4,7 +4,10 @@ import {
     BLOG_POST_LIST_ADD,
     BLOG_POST_LIST_ERROR,
     BLOG_POST_LIST_RECEIVED,
-    BLOG_POST_LIST_REQUEST, BLOG_POST_RECEIVED, BLOG_POST_REQUEST, BLOG_POST_UNLOAD
+    BLOG_POST_LIST_REQUEST,
+    BLOG_POST_RECEIVED,
+    BLOG_POST_REQUEST,
+    BLOG_POST_UNLOAD
 } from "./constants";
 
 
@@ -41,6 +44,7 @@ export const blogPostReceived = (data) => ({
     data
 });
 
+
 export const blogPostListFetch = () => {
     return (dispatch) => {
         dispatch(blogPostListRequest());
@@ -58,6 +62,7 @@ export const blogPostFetch = (id) => {
             .catch(error => dispatch(blogPostError(error)));
     }
 };
+
 
 export const blogPostAdd = () => ({
     type: BLOG_POST_LIST_ADD,
