@@ -5,6 +5,7 @@ import LoginForm from "./LoginForm";
 import BlogPostListContainer from "./BlogPostListContainer";
 import Header from "./Header";
 import BlogPostContainer from "./BlogPostContainer";
+import LoginPage from "./LoginPage";
 
 class App extends React.Component {
 
@@ -18,7 +19,7 @@ class App extends React.Component {
             <hr/>
             <Switch>
                 <Route path="/blog-post/:id/:slug" component={BlogPostContainer} />
-                <Route path="/login" component={LoginForm} />
+                <Route path="/login" component={LoginPage} />
                 <Route path="/" component={BlogPostListContainer} />
             </Switch>
         </div>);
