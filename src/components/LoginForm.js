@@ -10,8 +10,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-    ...state.auth,
-    ...state.form
+    auth: state.auth,
+    router: state.router
 });
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
@@ -23,15 +23,19 @@ class LoginForm extends React.Component {
 
     onSubmit(values) {
        console.log('submit: ', values);
-       return  this.props.userLoginAttempt(values.username, values.password);
+       const res = this.props.userLoginAttempt(values.username, values.password);
+
+       res.then(() => {
+           if (this.props.auth.token) {
+               this.props.history.push('/');
+           }
+       })
     }
 
     render() {
-        const { handleSubmit, error } = this.props;
+        const { handleSubmit, auth } = this.props;
 
-        console.log('props: ', handleSubmit, error);
-
-        const errorMessage = error ? 'Error Login' : '';
+        const errorMessage = auth.error ? 'Error Login' : '';
         const show = errorMessage.length > 0;
 
         return (<div>

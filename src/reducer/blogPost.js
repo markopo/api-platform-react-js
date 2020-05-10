@@ -8,7 +8,7 @@ export default (state = {
     post: null,
     isFetching: false
 }, action) => {
-    console.log('reducer: ', state, action);
+   // console.log('reducer: ', state, action);
 
     switch (action.type) {
 
