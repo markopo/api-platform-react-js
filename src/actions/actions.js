@@ -7,7 +7,7 @@ import {
     BLOG_POST_LIST_REQUEST,
     BLOG_POST_RECEIVED,
     BLOG_POST_REQUEST,
-    BLOG_POST_UNLOAD, USER_LOGIN_FAILED, USER_LOGIN_SUCCESS
+    BLOG_POST_UNLOAD, USER_LOGIN_FAILED, USER_LOGIN_HAS_TOKEN, USER_LOGIN_LOGOUT, USER_LOGIN_SUCCESS
 } from "./constants";
 
 
@@ -78,6 +78,19 @@ export const userLoginError = (error) => {
     };
 };
 
+export const userLoginLogout = () => {
+    return {
+        type: USER_LOGIN_LOGOUT
+    };
+}
+
+export const userLoginHasToken = (token) => {
+    return {
+        type: USER_LOGIN_HAS_TOKEN,
+        token
+    };
+}
+
 export const userLoginAttempt = (username, password) => {
     return (dispatch) => {
         return requests.post('/login_check', { username, password })
@@ -86,6 +99,16 @@ export const userLoginAttempt = (username, password) => {
     }
 };
 
+export const userLoginLogoutAttempt = () => dispatch => {
+    requests.setToken(null);
+    window.localStorage.removeItem('jwtToken');
+    return dispatch(userLoginLogout());
+};
+
+export const userLoginHasTokenAttempt = (token) => dispatch => {
+    requests.setToken(token);
+    dispatch(userLoginHasToken(token));
+};
 
 export const blogPostAdd = () => ({
     type: BLOG_POST_LIST_ADD,
